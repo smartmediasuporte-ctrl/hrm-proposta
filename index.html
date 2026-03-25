@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta de Investimento ‚Äî HRM Capital</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-elevated: #1a1a1a;
+  --border: #222222;
+  --border-light: #2a2a2a;
+  --text: #f5f5f5;
+  --text-secondary: #a0a0a0;
+  --text-muted: #555555;
+  --accent: #ffffff;
+  --accent-dim: rgba(255,255,255,0.06);
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --gold: #f59e0b;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 { letter-spacing: -0.02em; font-weight: 600; }
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Sections */
+section {
+  padding: 80px 0;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible { opacity: 1; transform: translateY(0); }
+
+section .anim-child {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.visible .anim-child { opacity: 1; transform: translateY(0); }
+
+/* Card */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+  transition: border-color 0.18s ease;
+}
+
+.card:hover { border-color: var(--border-light); }
+
+/* === SECTION 0 ‚Äî COVER === */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+.cover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+
+.logo {
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo svg { height: 28px; width: auto; }
+
+.logo-sm svg { height: 20px; width: auto; }
+
+.btn-edit {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  opacity: 0;
+}
+
+.btn-edit:hover, .btn-edit:focus { border-color: var(--border-light); color: var(--text); }
+
+.cover-header:hover .btn-edit, .btn-edit:focus { opacity: 1; }
+
+.cover-title {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.cover-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 48px;
+}
+
+.cover-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-light);
+  margin-bottom: 48px;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-end;
+  margin-bottom: 48px;
+}
+
+.cover-meta-item label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.cover-meta-item .value {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.badge-confidential {
+  display: inline-block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+/* === SECTION 1 ‚Äî INVESTOR PROFILE === */
+.profile-badge {
+  display: inline-block;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-light);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.profile-desc {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 40px;
+  max-width: 640px;
+}
+
+.progress-group { margin-bottom: 24px; }
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-label span:first-child {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.progress-label span:last-child {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* === SECTION 2 ‚Äî PRODUCT === */
+.product-name {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.product-tagline {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+.feature-list { list-style: none; }
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.feature-list li:last-child { border-bottom: none; }
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.feature-icon svg { width: 16px; height: 16px; stroke: var(--text-muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* === SECTION 3 ‚Äî STRATEGY === */
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.strategy-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.strategy-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.asset-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.asset-item {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  transition: border-color 0.18s ease;
+}
+
+.asset-item:hover { border-color: var(--border-light); }
+
+.asset-ticker {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.asset-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* === SECTION 4 ‚Äî FEES === */
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+}
+
+.fees-table th, .fees-table td {
+  text-align: left;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.fees-table th {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.fees-table td:first-child {
+  font-weight: 500;
+  color: var(--text);
+  width: 160px;
+}
+
+.fees-table td:last-child { color: var(--text-secondary); }
+
+.alignment-card {
+  background: var(--accent-dim);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 48px;
+}
+
+.alignment-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Simulator */
+.simulator {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.simulator h3 {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.slider-container { margin-bottom: 24px; }
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.slider-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.slider-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--bg-elevated);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.sim-results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.sim-result-item label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.sim-result-item .val {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.sim-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 20px;
+}
+
+/* === SECTION 5 ‚Äî NEXT STEPS === */
+.timeline { position: relative; padding-left: 40px; }
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-step {
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.timeline-step:last-child { padding-bottom: 0; }
+
+.timeline-marker {
+  position: absolute;
+  left: -40px;
+  top: 2px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.timeline-step.active .timeline-marker {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.timeline-step h4 {
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.timeline-step.active h4 { color: var(--text); }
+
+.timeline-step p {
+  font-size: 14px;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.timeline-step.active p { color: var(--text-secondary); }
+
+/* === SECTION 6 ‚Äî FOOTER === */
+.footer-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.footer-logo span { opacity: 0.5; }
+
+.disclaimer {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+.footer-bottom {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* === EDIT PANEL === */
+.panel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.panel-overlay.open { opacity: 1; pointer-events: all; }
+
+.edit-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 380px;
+  max-width: 100%;
+  height: 100vh;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  z-index: 101;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  padding: 32px 24px;
+}
+
+.edit-panel.open { transform: translateX(0); }
+
+.edit-panel h3 {
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.field-group {
+  margin-bottom: 24px;
+}
+
+.field-group label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.field-group input[type="text"],
+.field-group input[type="date"],
+.field-group input[type="number"],
+.field-group select {
+  width: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  border-color: var(--border-light);
+}
+
+.field-group input[type="range"] { margin-top: 4px; }
+
+.range-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 8px;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.btn-apply {
+  flex: 1;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.18s ease;
+}
+
+.btn-apply:hover { opacity: 0.9; }
+
+.btn-print {
+  flex: 1;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-print:hover { border-color: var(--border-light); color: var(--text); }
+
+.btn-close-panel {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.btn-close-panel:hover { color: var(--text); }
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  section { padding: 48px 0; }
+
+  .cover-title { font-size: 32px; }
+
+  .strategy-grid { grid-template-columns: 1fr; }
+
+  .sim-results { grid-template-columns: 1fr; gap: 12px; }
+
+  .cover-meta { gap: 24px; }
+
+  .btn-edit { opacity: 1; }
+
+  .edit-panel { width: 100%; }
+
+  .asset-grid { grid-template-columns: 1fr; }
+
+  .fees-table td:first-child { width: auto; }
+}
+
+/* === PRINT === */
+@media print {
+  * { animation: none !important; transition: none !important; }
+
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  section { opacity: 1 !important; transform: none !important; page-break-inside: avoid; padding: 40px 0; }
+
+  section .anim-child { opacity: 1 !important; transform: none !important; }
+
+  .progress-fill { transition: none !important; }
+
+  .btn-edit, .panel-overlay, .edit-panel, .no-print { display: none !important; }
+
+  .cover { min-height: auto; page-break-after: always; }
+
+  .simulator { page-break-inside: avoid; }
+
+  input[type="range"] { display: none; }
+
+  .slider-value-print { display: block !important; }
+
+  .timeline { page-break-inside: avoid; }
+}
+
+.slider-value-print { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ==================== PASSWORD GATE ==================== -->
+<div id="passwordGate" style="position:fixed;inset:0;z-index:10000;background:#0a0a0a;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:360px;padding:24px;">
+    <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:28px;color:#fff;letter-spacing:-0.02em;margin-bottom:48px;">HRM</div>
+    <p style="font-size:14px;color:#a0a0a0;margin-bottom:32px;">Este documento √© confidencial.<br>Insira a senha de acesso para continuar.</p>
+    <input type="password" id="gatePassword" placeholder="Senha de acesso" autocomplete="off" style="width:100%;padding:14px 16px;background:#111;border:1px solid #222;border-radius:6px;color:#f5f5f5;font-family:'Inter',sans-serif;font-size:15px;outline:none;margin-bottom:16px;text-align:center;letter-spacing:0.1em;" />
+    <button id="gateSubmit" style="width:100%;padding:14px;background:#fff;color:#0a0a0a;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.18s;">Acessar Proposta</button>
+    <p id="gateError" style="color:#ef4444;font-size:13px;margin-top:16px;display:none;">Senha incorreta.</p>
+  </div>
+</div>
+
+<!-- ==================== SECTION 0 ‚Äî COVER ==================== -->
+<section class="cover visible" id="sec-cover">
+  <div class="container">
+    <header class="cover-header">
+      <div class="logo" aria-label="HRM Capital"><span style="font-family:'Inter',sans-serif;font-weight:700;font-size:28px;color:#fff;letter-spacing:-0.02em;">HRM</span></div>
+      <button class="btn-edit no-print" id="btnEdit" aria-label="Personalizar proposta">&#9998; Personalizar</button>
+    </header>
+    <div class="anim-child" style="transition-delay:0.1s">
+      <h1 class="cover-title">Proposta de Investimento</h1>
+    </div>
+    <div class="anim-child" style="transition-delay:0.2s">
+      <p class="cover-subtitle">HRM Leverage Control &mdash; Estrat√©gia de crescimento estruturado</p>
+    </div>
+    <div class="cover-divider anim-child" style="transition-delay:0.3s"></div>
+    <div class="cover-meta anim-child" style="transition-delay:0.4s">
+      <div class="cover-meta-item">
+        <label>Preparado para</label>
+        <div class="value" id="displayClientName">Jo√£o Branquinho</div>
+      </div>
+      <div class="cover-meta-item">
+        <label>Data de emiss√£o</label>
+        <div class="value" id="displayDate"></div>
+      </div>
+    </div>
+    <div class="anim-child" style="transition-delay:0.5s">
+      <div class="badge-confidential">Documento Confidencial</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 1 ‚Äî INVESTOR PROFILE ==================== -->
+<section id="sec-profile">
+  <div class="container">
+    <div class="card">
+      <h2 class="anim-child" style="font-size:24px;margin-bottom:20px;">Seu Perfil de Investidor</h2>
+      <div class="anim-child" style="transition-delay:0.1s">
+        <div class="profile-badge" id="displayProfile">MODERADO</div>
+      </div>
+      <p class="profile-desc anim-child" style="transition-delay:0.15s" id="displayProfileDesc">
+        Compat√≠vel com estrat√©gias de crescimento e horizonte de m√©dio a longo prazo. Busca retorno acima do benchmark com toler√¢ncia equilibrada ao risco.
+      </p>
+      <div class="anim-child" style="transition-delay:0.2s">
+        <div class="progress-group">
+          <div class="progress-label">
+            <span>Toler√¢ncia ao risco</span>
+            <span id="displayRiskVal">60%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressRisk" data-target="60"></div>
+          </div>
+        </div>
+      </div>
+      <div class="anim-child" style="transition-delay:0.25s">
+        <div class="progress-group">
+          <div class="progress-label">
+            <span>Horizonte de investimento</span>
+            <span>M√©dio-longo prazo</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-target="70"></div>
+          </div>
+        </div>
+      </div>
+      <div class="anim-child" style="transition-delay:0.3s">
+        <div class="progress-group">
+          <div class="progress-label">
+            <span>Objetivo principal</span>
+            <span>Crescimento de capital</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" data-target="80"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 2 ‚Äî PRODUCT ==================== -->
+<section id="sec-product">
+  <div class="container">
+    <div class="card">
+      <div class="anim-child">
+        <h2 class="product-name">HRM Leverage Control</h2>
+      </div>
+      <p class="product-tagline anim-child" style="transition-delay:0.1s">Crescimento estruturado de capital com alavancagem controlada e gest√£o ativa de risco.</p>
+      <ul class="feature-list">
+        <li class="anim-child" style="transition-delay:0.15s">
+          <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span>
+          Alavancagem controlada com limites predefinidos de exposi√ß√£o
+        </li>
+        <li class="anim-child" style="transition-delay:0.2s">
+          <span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          Gest√£o ativa com acompanhamento cont√≠nuo de mercado
+        </li>
+        <li class="anim-child" style="transition-delay:0.25s">
+          <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg></span>
+          Diversifica√ß√£o entre BTC, altcoins l√≠quidas e stablecoins
+        </li>
+        <li class="anim-child" style="transition-delay:0.3s">
+          <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          Prote√ß√£o de capital com stops e rebalanceamento din√¢mico
+        </li>
+        <li class="anim-child" style="transition-delay:0.35s">
+          <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+          Gera√ß√£o de alpha acima do Crypto Nasdaq Index (CNI)
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 3 ‚Äî STRATEGY ==================== -->
+<section id="sec-strategy">
+  <div class="container">
+    <h2 class="anim-child" style="font-size:24px;margin-bottom:32px;">Estrat√©gia de Investimento</h2>
+    <div class="strategy-grid">
+      <div class="card strategy-card anim-child" style="transition-delay:0.1s">
+        <h3>Aloca√ß√£o Din√¢mica</h3>
+        <p>Portf√≥lio ajustado √†s condi√ß√µes de mercado. Em tend√™ncia de alta, maior exposi√ß√£o a ativos de risco. Em incerteza, migra√ß√£o para stablecoins e posi√ß√µes defensivas.</p>
+      </div>
+      <div class="card strategy-card anim-child" style="transition-delay:0.2s">
+        <h3>Gest√£o de Risco</h3>
+        <p>Controle rigoroso de drawdown, limites por ativo, monitoramento de volatilidade e liquidez, stop loss e rebalanceamento din√¢mico de posi√ß√µes.</p>
+      </div>
+      <div class="card strategy-card anim-child" style="transition-delay:0.3s">
+        <h3>Universo de Ativos</h3>
+        <div class="asset-grid">
+          <div class="asset-item">
+            <div class="asset-ticker">BTC</div>
+            <div class="asset-desc">Reserva de valor digital</div>
+          </div>
+          <div class="asset-item">
+            <div class="asset-ticker">ALT</div>
+            <div class="asset-desc">Altcoins l√≠quidas ‚Äî alpha</div>
+          </div>
+          <div class="asset-item">
+            <div class="asset-ticker">XAUT</div>
+            <div class="asset-desc">Ouro tokenizado ‚Äî hedge</div>
+          </div>
+          <div class="asset-item">
+            <div class="asset-ticker">USDT</div>
+            <div class="asset-desc">Stablecoins ‚Äî estabilidade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 4 ‚Äî FEES ==================== -->
+<section id="sec-fees">
+  <div class="container">
+    <h2 class="anim-child" style="font-size:24px;margin-bottom:32px;">Estrutura de Taxas</h2>
+    <div class="anim-child" style="transition-delay:0.1s">
+      <table class="fees-table">
+        <thead>
+          <tr><th>Taxa</th><th>Condi√ß√µes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Administra√ß√£o</td><td>2% a.a. (at√© USD 50k) / 1% a.a. (acima de USD 50k)</td></tr>
+          <tr><td>Performance</td><td>20% sobre o que exceder o benchmark (CNI)</td></tr>
+          <tr><td>Efetiva√ß√£o</td><td>Semestral (at√© USD 50k) / Anual (acima de USD 50k)</td></tr>
+          <tr><td>Lock-up</td><td>M√≠nimo 6 meses. Sa√≠da antecipada: multa de 10%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alignment-card anim-child" style="transition-delay:0.15s">
+      <p>"Princ√≠pio de alinhamento: s√≥ ganhamos quando o cliente ganha. A taxa de performance incide exclusivamente sobre o resultado que exceder o benchmark."</p>
+    </div>
+    <div class="simulator anim-child" style="transition-delay:0.2s">
+      <h3>Simulador de Taxas</h3>
+      <div class="slider-container">
+        <div class="slider-header">
+          <span class="slider-label">Valor do aporte</span>
+          <span class="slider-value" id="simSliderDisplay">R$ 100.000</span>
+        </div>
+        <input type="range" id="simSlider" min="10000" max="2000000" step="5000" value="100000" aria-label="Valor do aporte">
+        <div class="slider-value-print" id="simSliderPrint">R$ 100.000</div>
+      </div>
+      <div class="sim-results">
+        <div class="sim-result-item">
+          <label>Faixa aplic√°vel</label>
+          <div class="val" id="simTier">At√© USD 50k</div>
+        </div>
+        <div class="sim-result-item">
+          <label>Taxa administra√ß√£o</label>
+          <div class="val" id="simRate">2% a.a.</div>
+        </div>
+        <div class="sim-result-item">
+          <label>Custo anual estimado</label>
+          <div class="val" id="simCost">R$ 2.000</div>
+        </div>
+      </div>
+      <p class="sim-note">Taxa de performance calculada apenas sobre retorno acima do CNI. C√¢mbio de refer√™ncia: R$ 5,80 / USD.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 5 ‚Äî NEXT STEPS ==================== -->
+<section id="sec-steps">
+  <div class="container">
+    <h2 class="anim-child" style="font-size:24px;margin-bottom:40px;">Pr√≥ximos Passos</h2>
+    <div class="timeline anim-child" style="transition-delay:0.1s" id="timeline">
+      <div class="timeline-step active" data-step="1">
+        <div class="timeline-marker">1</div>
+        <h4>Reuni√£o de Alinhamento</h4>
+        <p>Conversa para esclarecer d√∫vidas e alinhar expectativas</p>
+      </div>
+      <div class="timeline-step" data-step="2">
+        <div class="timeline-marker">2</div>
+        <h4>Due Diligence e KYC</h4>
+        <p>Verifica√ß√£o de perfil e documenta√ß√£o</p>
+      </div>
+      <div class="timeline-step" data-step="3">
+        <div class="timeline-marker">3</div>
+        <h4>Dep√≥sito de Capital</h4>
+        <p>Via fiat ou cripto, conforme prefer√™ncia do cliente</p>
+      </div>
+      <div class="timeline-step" data-step="4">
+        <div class="timeline-marker">4</div>
+        <h4>Aloca√ß√£o do Portf√≥lio</h4>
+        <p>In√≠cio da gest√£o ativa do capital</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 6 ‚Äî FOOTER ==================== -->
+<footer id="sec-footer">
+  <div class="container" style="padding-bottom:60px;padding-top:20px;">
+    <div class="footer-divider"></div>
+    <div class="footer-logo logo-sm"><span style="font-family:'Inter',sans-serif;font-weight:700;font-size:20px;color:#fff;letter-spacing:-0.02em;">HRM</span></div>
+    <p class="disclaimer">
+      Este material √© estritamente informativo e foi preparado exclusivamente para o destinat√°rio identificado neste documento. N√£o constitui oferta p√∫blica, recomenda√ß√£o de investimento ou promessa de rentabilidade. O mercado de criptoativos envolve riscos elevados, incluindo a possibilidade de perda total do capital investido. Rentabilidades passadas n√£o s√£o garantia de resultados futuros.
+    </p>
+    <p class="footer-bottom">
+      <span id="footerDate"></span> &mdash; HRM Capital &mdash; Solu√ß√µes Financeiras na Blockchain
+    </p>
+  </div>
+</footer>
+
+<!-- ==================== EDIT PANEL ==================== -->
+<div class="panel-overlay no-print" id="panelOverlay"></div>
+<aside class="edit-panel no-print" id="editPanel" role="dialog" aria-label="Personalizar proposta">
+  <button class="btn-close-panel" id="btnClosePanel" aria-label="Fechar painel">&times;</button>
+  <h3>Personalizar</h3>
+
+  <div class="field-group">
+    <label for="editName">Nome do cliente</label>
+    <input type="text" id="editName" value="Jo√£o Branquinho">
+  </div>
+
+  <div class="field-group">
+    <label for="editDate">Data de emiss√£o</label>
+    <input type="date" id="editDate">
+  </div>
+
+  <div class="field-group">
+    <label for="editProfile">Perfil do investidor</label>
+    <select id="editProfile">
+      <option value="Conservador">Conservador</option>
+      <option value="Moderado" selected>Moderado</option>
+      <option value="Agressivo">Agressivo</option>
+    </select>
+  </div>
+
+  <div class="field-group">
+    <label for="editStep">Etapa atual</label>
+    <select id="editStep">
+      <option value="1" selected>1 ‚Äî Reuni√£o de Alinhamento</option>
+      <option value="2">2 ‚Äî Due Diligence e KYC</option>
+      <option value="3">3 ‚Äî Dep√≥sito de Capital</option>
+      <option value="4">4 ‚Äî Aloca√ß√£o do Portf√≥lio</option>
+    </select>
+  </div>
+
+  <div class="field-group">
+    <label for="editRisk">Toler√¢ncia ao risco</label>
+    <input type="range" id="editRisk" min="0" max="100" value="60">
+    <div class="range-value" id="editRiskVal">60%</div>
+  </div>
+
+  <div class="field-group">
+    <label for="editAmount">Valor do aporte simulado (R$)</label>
+    <input type="number" id="editAmount" value="100000" min="10000" max="2000000" step="5000">
+  </div>
+
+  <div class="panel-actions">
+    <button class="btn-apply" id="btnApply">Aplicar</button>
+    <button class="btn-print" id="btnPrint" aria-label="Imprimir ou salvar como PDF">Imprimir / PDF</button>
+  </div>
+</aside>
+
+<script>
+/* === PASSWORD GATE === */
+(function() {
+  const PASS = 'JCB';
+  const gate = document.getElementById('passwordGate');
+  const inp = document.getElementById('gatePassword');
+  const btn = document.getElementById('gateSubmit');
+  const err = document.getElementById('gateError');
+  if (sessionStorage.getItem('hrm_auth') === '1') { gate.style.display = 'none'; }
+  function tryAccess() {
+    if (inp.value.trim().toUpperCase() === PASS) {
+      sessionStorage.setItem('hrm_auth', '1');
+      gate.style.opacity = '0';
+      gate.style.transition = 'opacity 0.4s ease';
+      setTimeout(function() { gate.style.display = 'none'; }, 400);
+    } else {
+      err.style.display = 'block';
+      inp.style.borderColor = '#ef4444';
+      setTimeout(function() { inp.style.borderColor = '#222'; err.style.display = 'none'; }, 2000);
+    }
+  }
+  btn.addEventListener('click', tryAccess);
+  inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryAccess(); });
+  inp.focus();
+})();
+
+(function() {
+  'use strict';
+
+  const STORAGE_KEY = 'hrm_proposta_data';
+  const FX_RATE = 5.80;
+  const USD_THRESHOLD = 50000;
+
+  // --- Helpers ---
+  function formatBRL(val) {
+    return 'R$ ' + val.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr + 'T12:00:00');
+    return d.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function todayISO() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  // --- State ---
+  const defaults = {
+    clientName: 'Jo√£o Branquinho',
+    date: todayISO(),
+    profile: 'Moderado',
+    step: 1,
+    risk: 60,
+    amount: 100000
+  };
+
+  let state = Object.assign({}, defaults);
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) Object.assign(state, JSON.parse(saved));
+    } catch(e) {}
+  }
+
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  // --- Profile descriptions ---
+  const profileDescs = {
+    'Conservador': 'Perfil voltado √† preserva√ß√£o de capital com baixa exposi√ß√£o ao risco. Prioriza estabilidade e previsibilidade nos retornos.',
+    'Moderado': 'Compat√≠vel com estrat√©gias de crescimento e horizonte de m√©dio a longo prazo. Busca retorno acima do benchmark com toler√¢ncia equilibrada ao risco.',
+    'Agressivo': 'Alta toler√¢ncia ao risco e foco em maximiza√ß√£o de retorno. Aceita volatilidade elevada em busca de resultados expressivos.'
+  };
+
+  // --- Render ---
+  function render() {
+    document.getElementById('displayClientName').textContent = state.clientName;
+    document.getElementById('displayDate').textContent = formatDate(state.date);
+    document.getElementById('footerDate').textContent = formatDate(state.date);
+    document.getElementById('displayProfile').textContent = state.profile.toUpperCase();
+    document.getElementById('displayProfileDesc').textContent = profileDescs[state.profile] || profileDescs['Moderado'];
+    document.getElementById('displayRiskVal').textContent = state.risk + '%';
+
+    // Progress bar risk
+    const riskBar = document.getElementById('progressRisk');
+    riskBar.setAttribute('data-target', state.risk);
+    if (riskBar.classList.contains('animated')) {
+      riskBar.style.width = state.risk + '%';
+    }
+
+    // Timeline
+    document.querySelectorAll('.timeline-step').forEach(function(el) {
+      var stepNum = parseInt(el.getAttribute('data-step'));
+      el.classList.toggle('active', stepNum <= state.step);
+    });
+
+    // Simulator
+    updateSimulator(state.amount);
+    document.getElementById('simSlider').value = state.amount;
+
+    // Edit fields
+    document.getElementById('editName').value = state.clientName;
+    document.getElementById('editDate').value = state.date;
+    document.getElementById('editProfile').value = state.profile;
+    document.getElementById('editStep').value = state.step;
+    document.getElementById('editRisk').value = state.risk;
+    document.getElementById('editRiskVal').textContent = state.risk + '%';
+    document.getElementById('editAmount').value = state.amount;
+  }
+
+  // --- Simulator ---
+  function updateSimulator(val) {
+    val = Math.max(10000, Math.min(2000000, parseInt(val) || 100000));
+    var usd = val / FX_RATE;
+    var isHigh = usd > USD_THRESHOLD;
+    var rate = isHigh ? 1 : 2;
+    var cost = val * (rate / 100);
+
+    document.getElementById('simSliderDisplay').textContent = formatBRL(val);
+    document.getElementById('simSliderPrint').textContent = formatBRL(val);
+    document.getElementById('simTier').textContent = isHigh ? 'Acima de USD 50k' : 'At√© USD 50k';
+    document.getElementById('simRate').textContent = rate + '% a.a.';
+    document.getElementById('simCost').textContent = formatBRL(Math.round(cost));
+  }
+
+  // --- Intersection Observer for animations ---
+  function setupObserver() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Animate progress bars
+          entry.target.querySelectorAll('.progress-fill').forEach(function(bar) {
+            if (!bar.classList.contains('animated')) {
+              bar.classList.add('animated');
+              var target = bar.getAttribute('data-target') || 0;
+              setTimeout(function() { bar.style.width = target + '%'; }, 100);
+            }
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('section:not(.visible)').forEach(function(sec) {
+      observer.observe(sec);
+    });
+  }
+
+  // --- Panel ---
+  function openPanel() {
+    document.getElementById('panelOverlay').classList.add('open');
+    document.getElementById('editPanel').classList.add('open');
+  }
+
+  function closePanel() {
+    document.getElementById('panelOverlay').classList.remove('open');
+    document.getElementById('editPanel').classList.remove('open');
+  }
+
+  function applyEdits() {
+    state.clientName = document.getElementById('editName').value || defaults.clientName;
+    state.date = document.getElementById('editDate').value || todayISO();
+    state.profile = document.getElementById('editProfile').value;
+    state.step = parseInt(document.getElementById('editStep').value);
+    state.risk = parseInt(document.getElementById('editRisk').value);
+    state.amount = parseInt(document.getElementById('editAmount').value) || 100000;
+    saveState();
+    render();
+    closePanel();
+  }
+
+  // --- Events ---
+  document.getElementById('btnEdit').addEventListener('click', openPanel);
+  document.getElementById('panelOverlay').addEventListener('click', closePanel);
+  document.getElementById('btnClosePanel').addEventListener('click', closePanel);
+  document.getElementById('btnApply').addEventListener('click', applyEdits);
+  document.getElementById('btnPrint').addEventListener('click', function() {
+    closePanel();
+    setTimeout(function() { window.print(); }, 300);
+  });
+
+  document.getElementById('editRisk').addEventListener('input', function() {
+    document.getElementById('editRiskVal').textContent = this.value + '%';
+  });
+
+  document.getElementById('simSlider').addEventListener('input', function() {
+    updateSimulator(this.value);
+  });
+
+  // Close panel on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePanel();
+  });
+
+  // --- Init ---
+  loadState();
+  render();
+  setupObserver();
+
+})();
+</script>
+</body>
+</html>
